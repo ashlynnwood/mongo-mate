@@ -10,10 +10,19 @@ const {
 } = require('../../controllers/user-controller');
 
 // /api/users
-router.route('/').get(getUsers).post(createUser);
+router.route('/')
+  // GET all users  
+  .get(getUsers)
+  // POST a new user
+  .post(createUser);
 
 // /api/users/:id
-router.route('/:id').get(getUserById);
+router.route('/:id')
+  .get(getUserById)
+  // PUT to update a user by its _id
+  .put(updateUser)
+  // DELETE to remove user by its _id
+  .delete(deleteUser);
 
 router.route('/api/users/:userId/friends/:friendId')
 // POST to add a new friend to a user's friend list
@@ -25,10 +34,7 @@ router.route('/api/users/:userId/friends/:friendId')
 module.exports = router;
 
 // /api/users
-// GET all users
+
 // GET single user by _id and populated thought and friend data
-// POST a new user
-// PUT to update a user by its _id
-// DELETE to remove user by its _id
 // Remove a user's associated thoughts when deleted
 
