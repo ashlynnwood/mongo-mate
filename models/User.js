@@ -58,19 +58,17 @@ const userSchema = new Schema({
 
 // Create a virtual property `friendCount` that retrieves the length of the user's `friends` array
 userSchema
-  .virtual('friendName')
+  .virtual('friendCount')
   // Getter
   .get(function () {
-    return `${this.first} ${this.last}`;
+    return this.length;
   })
-  // Setter to set the first and last name
+  // Setter to set?
   .set(function (v) {
-    const first = v.split(' ')[0];
-    const last = v.split(' ')[1];
-    this.set({ first, last });
+    
   });
 
-// Initialize our User model
+// Initialize User model
 const User = model('User', userSchema);
 
 module.exports = User;
