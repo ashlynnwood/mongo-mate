@@ -19,19 +19,15 @@ const reactionSchema = new Schema({
       required: true,
       // 280 character maximum
      },
+     username: {
+      type: String,
+      required: true,
+    },
     createdAt: {
       // Date
       // Set default value to the current timestamp
       // Use a getter method to format the timestamp on query
     },
-    username: [
-      {
-        type: Schema.Types.ObjectId,
-        required: true,
-        ref: 'User',
-      },
-    ],
-  
   },
   {
     toJSON: {
@@ -41,16 +37,7 @@ const reactionSchema = new Schema({
   }
 );
 
-// Create a virtual `reactionCount` that gets the length of the thought's `reactions` array
-thoughtSchema
-  .virtual('reactionCount')
-  // Getter
-  .get(function () {
-    return this.length;
-  });
+// Initialize Reaction model
+const Reaction = model('Reaction', reactionSchema);
 
-
-// Initialize Thought model
-const Thought = model('Thought', thoughtSchema);
-
-module.exports = Thought;
+module.exports = Reaction;
