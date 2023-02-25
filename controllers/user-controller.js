@@ -4,8 +4,6 @@ const userController = {
   // Get all users
   getUsers(req, res) {
     User.find({})
-    .populate('friends')
-    .populate('thoughts')
     .then((users) => res.json(users))
     .catch((err) => {
       console.log(err);
@@ -17,6 +15,9 @@ const userController = {
  getUserById(req, res) {
   User.findOne({ _id: req.params.userId })
     .select('-__v')
+    // Get associated friends and thoughts 
+    .populate('friends')
+    .populate('thoughts')
     .then((user) =>
       !user
         ? res.status(404).json({ message: 'No user with that ID' })
