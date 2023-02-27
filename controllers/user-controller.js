@@ -41,13 +41,14 @@ async createUser(req, res) {
 
 },
 // Delete a user and associated thoughts
-deleteUser(req, res) {
-  User.findOneAndDelete({ _id: req.params.userId })
-    .then((user) => {
+async deleteUser(req, res) {
+  try {
+    const user = await User.findOneAndDelete({ _id: req.params.userId })
+      await Thought.deleteMany({ _id: {$in: user.thoughts} });
       res.json(user)
-      Thought.deleteMany({ _id: {$in: user.thoughts} });
-    })
-    .catch((err) => res.status(500).json(err));
+  } catch (err) {
+    res.status(500).json(err);
+  } 
 },
 // Update a user
 async updateUser(req, res) {
