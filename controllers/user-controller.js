@@ -14,6 +14,7 @@ const userController = {
 
 // Find a single user by ID
  async getUserById(req, res) {
+  console.log(req.params);
   try {
     const user = await User.findOne({ _id: req.params.userId })
       .select('-__v')
@@ -44,12 +45,25 @@ async createUser(req, res) {
 async deleteUser(req, res) {
   try {
     const user = await User.findOneAndDelete({ _id: req.params.userId })
-      await Thought.deleteMany({ _id: {$in: user.thoughts} });
-      res.json(user)
+      await Thought.deleteMany({ _id: {$in: user.         thoughts} });
+      if (!user) {
+        return res.status(404).json({message: 'No user with that ID :('})
+    }
+      res.json({message: 'User and thoughts deleted!'})
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
   } 
 },
+
+// deleteUser(req, res) {
+//   User.findOneAndDelete({ _id: req.params.userId })
+//     .then((user) => {
+//       res.json({message: 'User and thoughts deleted!'})
+//       Thought.deleteMany({ _id: {$in: user.thoughts} });
+//     })
+//     .catch((err) => res.status(500).json(err));
+// },
 // Update a user
 async updateUser(req, res) {
   try {
@@ -59,6 +73,7 @@ async updateUser(req, res) {
       {new: true, runValidators: true });
     res.json(user);
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
   } 
 },
@@ -71,6 +86,7 @@ async addFriend(req, res) {
       {new: true});
     res.json(user);
     } catch (err) {
+      console.error(err);
       res.status(500).json(err);
     } 
 },
@@ -83,6 +99,7 @@ async deleteFriend(req, res) {
       {new: true});
       res.json(user)
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
     }
   }

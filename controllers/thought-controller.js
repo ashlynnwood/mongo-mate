@@ -77,6 +77,7 @@ async createReaction(req, res) {
       {new: true, runValidators: true });
     res.json(thought);
   } catch(err) {
+    console.error(err)
     res.status(500).json(err);
   }
 },

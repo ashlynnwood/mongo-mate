@@ -18,7 +18,7 @@ router.route('/')
   // push the created thought's _id to associated user's `thoughts` array field
 
 // /api/thoughts/:id
-router.route('/:id')
+router.route('/:thoughtId')
   // Get single thought by its _id
   .get(getThoughtById)
   // Update thought by id
