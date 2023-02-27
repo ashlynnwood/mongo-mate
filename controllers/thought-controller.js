@@ -32,11 +32,12 @@ async createThought(req, res) {
     const thought = await Thought.create(req.body) 
     await User.findOneAndUpdate(
       {_id: req.body.userId}, 
-      {$push: {thoughts: thoughtData._id}}, 
+      {$push: {thoughts: thought._id}}, 
       {new: true});
     res.json(thought);
 
   }catch(err) {
+    console.error(err)
     res.status(500).json(err);
   }
 },
@@ -47,9 +48,9 @@ async deleteThought(req, res) {
     const thought = await Thought.findOneAndDelete({ _id: req.params.thoughtId })
     await User.findOneAndUpdate(
       {_id: req.body.userId}, 
-      {$pull: {thoughts: thoughtData._id}}, 
+      {$pull: {thoughts: thought._id}}, 
       {new: true});
-  res.json(thoughtData); 
+  res.json(thought); 
   } catch(err) {
     res.status(500).json(err);
   }
