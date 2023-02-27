@@ -24,7 +24,7 @@ router.route('/:id')
   // DELETE to remove user by its _id
   .delete(deleteUser);
 
-router.route('/api/users/:userId/friends/:friendId')
+router.route('/:userId/friends/:friendId')
 // POST to add a new friend to a user's friend list
     .post(addFriend)
 // DELETE to remove a friend from a user's friend list
@@ -33,7 +33,6 @@ router.route('/api/users/:userId/friends/:friendId')
 // export router so app can use it
 module.exports = router;
 
-// /api/users
 
 // GET single user by _id and populated thought and friend data
 // Remove a user's associated thoughts when deleted

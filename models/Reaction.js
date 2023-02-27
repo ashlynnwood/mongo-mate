@@ -14,24 +14,24 @@ const reactionSchema = new Schema({
     //  Use Mongoose's ObjectId data type
       type: Schema.Types.ObjectId,
     //  Default value is set to a new ObjectId
-      default: () => new Types.ObjectId,
+      default: () => new Types.ObjectId
      },
     reactionBody: {
       type: String, 
       required: true,
-      maxlength: 280,
+      maxlength: 280
       // 280 character maximum
      },
      username: {
       type: String,
-      required: true,
+      required: true
     },
     createdAt: {
       type: Date,
       // Set default value to the current timestamp
       default: Date.now,
       // Use a getter method to format the timestamp on query
-      get: (timestamp) => dateFormat(timestamp),
+      get: (timestamp) => dateFormat(timestamp)
     },
   },
   {

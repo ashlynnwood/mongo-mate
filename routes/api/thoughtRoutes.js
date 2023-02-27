@@ -11,7 +11,7 @@ const {
 
 // /api/thoughts
 router.route('/')
-  // GET to get all thoughts
+  // GET all thoughts
   .get(getThoughts)
   // Create a thought
   .post(createThought);
@@ -26,7 +26,8 @@ router.route('/:id')
   // Delete thought by id
   .delete(deleteThought);
 
-router.route('/api/thoughts/:thoughtId/reactions')
+// /api/thoughts/:thoughtId/reactions
+router.route('/:thoughtId/reactions')
   // POST to create a reaction stored in a single thought's `reactions` array field
   .post(createReaction)
   // DELETE to pull and remove a reaction by the reaction's `reactionId` value
