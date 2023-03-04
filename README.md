@@ -4,7 +4,8 @@ API that simulates a social media platform using a MongoDB database and the Mong
 ![GitHub-license](https://img.shields.io/badge/License-MIT-blue)
 
   ## Preview
-  
+  [mongomate.webm](https://user-images.githubusercontent.com/120209167/222880656-a2903840-f308-4d8a-97f0-b22709fd03e7.webm)
+
 
   ## Description
   This API simulates a social media platform where users can share their thoughts, react to friends’ thoughts, and create a friend list. It uses express.js for routing, a noSQL database to handle large amounts of unstructured data, and the Mongoose ODM.
@@ -22,7 +23,7 @@ API that simulates a social media platform using a MongoDB database and the Mong
   npm i
 
   ## Usage
-
+  Mongo Mate can be used to simulate your favorite social media networks! You can create users, delete users, update users,       find a single user, add and delete friends, create thoughts, and react to those thoughts.
 
   ## License
   This project is licensed under the MIT.
